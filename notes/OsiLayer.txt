@@ -1,0 +1,137 @@
+Open System Interconnection (OSI) model
+
+conceptual framework created by International Organization of Standardization (iso) to describe
+how data is transmitted across a network using a structured seven - layer architcture .
+
+- divide network communication into seven functional layers 
+- assign specific responsibility to each layer 
+- promote compatibility btw diff network systems 
+- simplify network design , implementation and trouble shooting 
+
+Application Layer 
+    |
+Presentation Layer 
+    |
+session layer
+    |
+Transport Layer 
+    |
+Network Layer 
+    |
+Data Link Layer 
+    |
+Phycical Layer 
+
+
+
+
+
+
+PHYSICAL LAYER ->
+transmit raw bitstream over physical medium 
+    core responsibility -> translates signals into 0's and 1's 
+    hardware -> hubs , modem , cables 
+    bit synchronization -> ensure sender and reciver are in sync by providing clock signal .
+    bit rate controle -> dictate trsnmission speed i.e. no. of bits sent per sec 
+    transmission mode -> determine direction of data flow , using models like simple , 
+                         half or full duplex 
+
+DATA LINK LAYER -> 
+ensure data transfer is error free 
+    data packing (framing) -> data packet recived from network layer are divided in frames by 
+                            adding specific "start" and "stop" bits 
+    adressing and hardware -> uses MAC adresses(physical adress) to identify Host , 
+                              encapsulate sender and reciver MAC adress into the frame header 
+    sublayers->(one above dll and one below)
+      1> Logic Link Controle (LLC): managle flow and error ctrl while acting as an interface for 
+                                    upper layer protocol (network layer)
+      2> Media Acess Control (MAC): determine hpw device physically access the transmission                          
+                                    medium and handle hardware adressing 
+
+    Error Crl -> detect and restransmit damaged or lost frames 
+
+    flow ctrl -> sunchronize data rate btw fast sender and slow reciver to prevent data bottlenecks
+
+    Acsess ctrl -> when multiple device share comm. channel , the MAC sublayer dictates which
+                   device has the right to transmit at a given time 
+
+
+NETWORK LAYER -> 
+manage data transmission btw host across diff. networks by handling logical adressing and path finding 
+
+    data unit -> data segments are encapsulated into packets 
+    Logical adressing -> assign unique ip to the packet header to the packet header to identify 
+                         device globally
+    routing -> determine most efficient path from sender to reciver across networks 
+    hardware -> implemented by routers and switch 
+    inter-networking -> facilitate comm. btw. different networks by directing traffic to correct 
+                        direction 
+
+
+
+TRANSPORT LAYER -> 
+ensure end to end delivery of entire message , ensure data reaches the correct application on the 
+destinantion port  
+
+    data unit -> data broken in to segments 
+    service point adressing -> uses port number to ensure data is delivered to specific process 
+                               or application intended . 
+    segmentation and reassembly -> split large message into smaller segment 
+    protocols -> TCP (reliable), UDP (fast)
+    connection oriented(TCP) -> requitr "handshake" to establish connection , ensure reliability 
+                           via error checking and acknowledgement 
+    Connectionless (UDP) -> send data immediately without a formal connection , faster but no 
+                            gurantee of delivery 
+
+
+
+
+SESSION LAYER -> 
+govern the opening , closing and security of comm. channels 
+
+    session lifecycle -> manage establishing , maintainance and termination of connection 
+    Auth and sec -> esure connected parties are verified and connection is secured 
+    synchronization -> insert checkpoint into data steam .. so if faliur occur , transfer 
+                       start from last saved checkpoint 
+    dailog ctrl -> directs wether comm. is half or full duplex 
+
+
+
+PRESENTATION LAYER -> 
+ensure that data is formatted , secure and compressed so that reciving application can correctly 
+interprete it 
+
+   trnslation -> extract data from the application layer nad convert into a standard format format
+                 for network transmission 
+    standards and formats -> encoding of media usin standard like jpeg , mpeg , gif
+    encryption / decryption -> plain text into cypher text using key values . handeled by
+                               processes like TLS / SSL 
+    compression -> reduce total no. pf bits , inc network efficiency 
+
+
+
+
+
+Application Lyer -> 
+serve as interface btw software user and network
+
+    user interface -> act as window for network based application 
+    core protocos -> HTTP/s , SMTP(email) , FTP(file transfer) , DNS(Domain name resolution)
+    Network virtual terminal -> enable user to log into and intract with remote host at terminal 
+    File trensfer , Access and management (FTAM) -> provide framework fro user to manipulte files 
+                                                    stored on remote computers      
+    
+--------------------------------------------------------------
+
+DATA FLOW IN OSI MODEL 
+
+Application Layer: Applications create the data.
+Presentation Layer: Data is formatted and encrypted.
+Session Layer: Connections are established and managed.
+Transport Layer: Data is broken into segments for reliable delivery.
+Network Layer: Segments are packaged into packets and routed.
+Data Link Layer: Packets are framed and sent to the next device.
+Physical Layer: Frames are converted into bits and transmitted physically.
+
+
+
