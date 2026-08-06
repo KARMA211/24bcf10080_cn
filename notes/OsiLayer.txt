@@ -112,8 +112,9 @@ interprete it
 
 
 
-Application Lyer -> 
-serve as interface btw software user and network
+APPLICATION LAYER -> 
+serve as interface btw software user and network .. its not the application but a set of networks
+services that aloows the application to comm. over the network
 
     user interface -> act as window for network based application 
     core protocos -> HTTP/s , SMTP(email) , FTP(file transfer) , DNS(Domain name resolution)

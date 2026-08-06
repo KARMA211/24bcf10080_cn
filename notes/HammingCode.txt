@@ -1,0 +1,23 @@
+HAMMING CODE ->
+error correctuon code .. ensure data accuracy during transmission or storage  
+
+Redudant Bits -> 
+                extra binary bits that are generated and added to the information to ensure no 
+                bits are lost during transfer 
+
+
+                Number of redundant bits -> 
+
+                        formula ->  2^r >= m + r + 1
+
+                                    m-> no of bits in input data 
+                                    r -> np of redundant bits 
+                        
+                        eg -> m = 7
+                        then redundant bits = >
+                                                2^4 >= 7 + 4 + 1
+                                                no of redundant bits  -> 4
+
+
+PARITY BITS ->
+bit appended to the data to ensure total no. of 1's in the data is odd or even 
