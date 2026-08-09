@@ -21,3 +21,17 @@ Redudant Bits ->
 
 PARITY BITS ->
 bit appended to the data to ensure total no. of 1's in the data is odd or even 
+
+    Even parity Bits -> no. of bits are counted , if count == odd -> parity bit set to -> 1
+                                                if count == even -> parityt bit -> 0
+
+    Odd parity Bit -> no. of bits are counted , if count == even -> parity bit set to -> 1
+                                                if count == odd -> parity bit -> 0
+                                                   
+
+ALGORITHM -> 
+
+- write the bit position starting from 1 
+- all bits position that are power of 2 are marked as parity bits (1,2,4,8...)
+- all other bits are marked as data bits 
+- 

@@ -1,0 +1,112 @@
+
+Q. Difference between Hub, Switch & Router
+
+Hub:
+
+* Works at **Physical Layer (Layer 1)**.
+* Does not use any address.
+* Sends data to **all connected devices**.
+* Least intelligent device.
+* More chances of collision.
+
+Switch:
+
+* Works at **Data Link Layer (Layer 2)**.
+* Uses **MAC addresses**.
+* Sends data only to the **destination device**.
+* More intelligent than a hub.
+* Reduces collisions.
+
+Router:
+
+* Works at **Network Layer (Layer 3)**.
+* Uses **IP addresses**.
+* Connects **different networks**.
+* Selects the best path for data.
+* Most intelligent among the three.
+
+Why is Hub least intelligent?
+A hub does not examine the destination address. It simply broadcasts incoming data to every connected device.
+
+Why is Router most intelligent?
+A router examines the destination IP address and decides the appropriate path to forward the packet.
+
+Hub:     PC1 → Hub → PC2, PC3, PC4
+Switch:  PC1 → Switch → PC2
+Router:  Network A → Router → Network B 
+
+---
+
+Q. Random Access Protocols
+
+Random Access Protocols are MAC protocols in which multiple devices **compete for access to a shared communication channel**.
+
+They are needed to control access to the shared medium and **reduce/manage collisions** when multiple devices transmit at the same time.
+
+1. ALOHA
+
+* A device can transmit whenever it has data.
+* It does not check whether the channel is free.
+* If collision occurs, it waits for a random time and retransmits.
+* Types: **Pure ALOHA** and **Slotted ALOHA**.
+
+ 2. CSMA
+
+CSMA = Carrier Sense Multiple Access
+
+* Device first **checks/senses the channel**.
+* If channel is free → transmit.
+* If channel is busy → wait.
+* Collision can still occur if two devices transmit simultaneously.
+
+Sense → Channel free?
+          ↓ Yes
+       Transmit
+          ↓ No
+         Wait
+
+3. CSMA/CD
+
+CSMA/CD = Carrier Sense Multiple Access with Collision Detection**
+
+* Mainly used in traditional shared Ethernet.
+* Device senses the channel before transmitting.
+* While transmitting, it detects whether a collision occurs.
+* If collision occurs → stop transmission → wait for random backoff → retransmit.
+
+Sense → Transmit → Detect Collision
+                    ↓
+                  Backoff
+                    ↓
+                Retransmit
+
+ 4. CSMA/CA
+
+CSMA/CA = Carrier Sense Multiple Access with Collision Avoidance**
+
+* Mainly used in **Wi-Fi**.
+* Attempts to avoid collisions before transmission.
+* Device senses the channel and waits for a random backoff time.
+* Then it transmits and waits for an **ACK**.
+
+Sense → Random Backoff → Transmit → ACK
+
+CSMA/CD:
+
+* Collision **Detection**.
+* Mainly used in traditional Ethernet.
+* Detects collision after transmission starts.
+* Stops and retransmits after backoff.
+
+CSMA/CA:
+
+* Collision **Avoidance**.
+* Mainly used in Wi-Fi.
+* Tries to prevent collisions before transmission.
+* Uses waiting/backoff and ACK.
+
+
+CSMA    = Listen
+CSMA/CD = Listen + Detect
+CSMA/CA = Listen + Avoid
+
