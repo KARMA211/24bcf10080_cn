@@ -38,3 +38,26 @@ data link layer -?
 ERROR DETECTION (go through the ppt ) 
     HAMMING CODE
         -parity 
+
+
+
+
+
+
+-enable 
+-show vlan brief
+-conf t
+-vlan 10 (can give it any serial no...anything except vlan 1) as vlan 1 is already default 
+-name nameYOUwant
+-exit
+
+
+
+now u gotta config the port to the vlan 
+-interface fa0/1
+-switchport mode access vlan 10
+and then exit twice to go into normal mode and do show vlan brief to see the vlans 
+
+for config of trunk 
+-interface gigabitEthernet 0/1
+-switchport mode trunk 
