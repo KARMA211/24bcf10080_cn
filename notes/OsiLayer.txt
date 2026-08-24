@@ -57,6 +57,7 @@ ensure data transfer is error free
 
 
 NETWORK LAYER -> 
+deliver data from source network to destination network 
 manage data transmission btw host across diff. networks by handling logical adressing and path finding 
 
     data unit -> data segments are encapsulated into packets 
@@ -66,6 +67,7 @@ manage data transmission btw host across diff. networks by handling logical adre
     hardware -> implemented by routers and switch 
     inter-networking -> facilitate comm. btw. different networks by directing traffic to correct 
                         direction 
+    protocols-> IPv4( header size 20-60 bytes ), IPv6 ( header size - 40 bytes fixed)
 
 
 
@@ -80,20 +82,28 @@ destinantion port
     protocols -> TCP (reliable), UDP (fast)
     connection oriented(TCP) -> requitr "handshake" to establish connection , ensure reliability 
                            via error checking and acknowledgement 
+                           connection oriented ( 20-60 bytes header size)
+
+                    TCP three way handshake:
+                        SYN ( client -> server )
+                        SYN-ACK (Server -> Client )
+                        ACK (Client -> server )
     Connectionless (UDP) -> send data immediately without a formal connection , faster but no 
                             gurantee of delivery 
+                            connectionless , fast ( header size - 8 bytes )
 
 
 
 
 SESSION LAYER -> 
-govern the opening , closing and security of comm. channels 
+establish , maintain and terminate communication sessions 
 
     session lifecycle -> manage establishing , maintainance and termination of connection 
     Auth and sec -> esure connected parties are verified and connection is secured 
     synchronization -> insert checkpoint into data steam .. so if faliur occur , transfer 
                        start from last saved checkpoint 
     dailog ctrl -> directs wether comm. is half or full duplex 
+    protocols -> NetBIOS , RPC 
 
 
 
@@ -107,7 +117,7 @@ interprete it
     encryption / decryption -> plain text into cypher text using key values . handeled by
                                processes like TLS / SSL 
     compression -> reduce total no. pf bits , inc network efficiency 
-
+    protocols -> SSL/TLS , JPEG , MPEG 
 
 
 
@@ -121,7 +131,7 @@ services that aloows the application to comm. over the network
     Network virtual terminal -> enable user to log into and intract with remote host at terminal 
     File trensfer , Access and management (FTAM) -> provide framework fro user to manipulte files 
                                                     stored on remote computers      
-    
+    eg -> in whatsapp typing " hello " , message prepared but nnot yest encrypted or segmented    
 --------------------------------------------------------------
 
 DATA FLOW IN OSI MODEL 

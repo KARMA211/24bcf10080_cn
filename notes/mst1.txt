@@ -259,8 +259,17 @@ PC2 ─────── Switch ─────── PC3
 
 
 2> SWITCH (intelligent device)
-    operates 
+    operates at data link layer (level 2) 
+    Selective packet forwarding / filtering 
+    full duplex 
+    MAC address table (CAM table)
+    each port has its own domain
 
+3> Router 
+    network layer (level 3)
+    connect different network 
+    routing table 
+    each port has seperate collision and broadcast domains 
 
 
 
