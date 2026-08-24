@@ -1,0 +1,286 @@
+Computer Network -> collection of interconnected computer/devices that communicate with eachother 
+                    to exchange data and share resources 
+
+                    Laptop ───┐
+                    PC ───────┼── Switch ─── Router ─── Internet
+                    Phone ────┘
+
+                    they can share files , printers , internet connection , applications , data etc
+
+
+
+
+------------------TYPES OF NETWORK CONNECTION ---------------
+
+PAN -> personal area network  
+    range - 1-10 meter 
+        low range , few meters 
+    eg - bluetooth , hotspot 
+
+       Phone
+       /   \
+   Watch   Earbuds
+      \     /
+       Laptop
+
+LAN -> local area network 
+    range - 1-2 km 
+    small geographical area like college comp lab , home network , office , school 
+    high speed , low cost , privately owned 
+PC ─┐
+PC ─┼── Switch
+PC ─┘
+
+
+MAN -> metropolitan area network 
+    range - 5-50km 
+    cover a city or large metropolitan area
+    eg - network connecting multiple brances of an organisation across city 
+Building A ───┐
+Building B ───┼── MAN
+Building C ───┘
+
+
+WAN -> wide area network 
+    range - thousands of km 
+    cover large geographical are 
+    span could be countries , continent , entire world 
+India ───────── USA
+  \             /
+   \── Internet/
+
+
+
+
+USE OF COMPUTER NETWORK 
+- resource sharing (printer , storage , internet)
+- communication (email , message , vc)
+- file sharing 
+- remote access ( u can acess pc or server remotely ) 
+- centralized management ( org can manage users , data , security )
+- internet access 
+
+characterstic of good network--- reliablility , speed , security , scalibilty , performance  
+
+
+
+
+
+
+
+
+
+
+
+-------------------DATA TRANSMISSION ---------------
+
+--------> BASED ON DIRECTION 
+
+1> Simlex Mode 
+    one way 
+    eg - monitor to computer 
+    adv - simple , low cost , full channel capacity 
+    disAdv - no feedback , no error confirmation 
+
+
+2> Half Duplex 
+    two way , but not simulatnious 
+    eg - walkie-talkie system 
+    adv - two way comm 
+    disAdv - cannot communicate simulatniously
+
+3> full Duplex
+    simultanious two way 
+    eg - telephone call
+    adv - max performace , real time communication.
+
+
+-----> BASED ON SYNCHRONIZATION 
+(synchronous and asynchronous)
+
+
+Feature       	  Asynchronous	                 Synchronous
+
+Clock	          No common clock	             Shared timing reference
+Data Transfer	  One character at a time	     Continuous stream of bits
+Start/Stop Bits	  Added per character	         Not required
+Gaps	          May exist between characters	 No gaps
+Speed	          Low-speed	                     High-speed
+Efficiency	      Lower	                         Higher
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------NETWORK ARCHITECTURE --------------------------
+
+1> CLIENT SERVER ARCHITECTURE 
+    central server provide services to clients 
+             SERVER
+           /   |   \
+          /    |    \
+       Client Client Client 
+
+    eg -> when u open a website .. browser -> web server ... the browser is a client 
+    advantages - centralized management , better security , easy backup , easy adminstration 
+    disAdv - if central server fail , services become unavailable 
+
+
+2> PEER TO PEER ARCHITECTURE (P2P)
+    each computer act as both client and server 
+PC ───── PC
+│         │
+│         │
+PC ───── PC
+
+    advantages-   simple , cheap , no dedicated server required 
+    disAdv - difficult to manage , security is harder to ctrl , backup is decentralized 
+    dua role -> can download and upload simulaniouly 
+    eg - torrent , blockchain network 
+
+
+
+Client-Server           	Peer-to-Peer
+Central server exists   	No dedicated central server
+Centralized management  	Decentralized
+Better security/control 	Less centralized control
+Easier backup           	Backup is distributed
+Suitable for large networks	Suitable for small networks
+
+
+
+
+NETWORK TOPOLOGIES ----------------------
+    
+1> Bus Topology (back bone) 
+    all devices connected to single main cable
+
+PC1       PC2       PC3       PC4
+ |         |         |         |
+=================================
+          Backbone
+
+    adv - simple , cheap , less cables required , easy to install for small network
+    disAdv - if backboen fail , everything gone , difficult troubleshooting , performance dec as devices inc 
+              collision can occour 
+
+
+2> Star Topology (Central device)
+    every device connected to a central device , usually a switch  
+
+
+             PC1
+              |
+              |
+PC2 ─────── Switch ─────── PC3
+              |
+              |
+             PC4
+
+    adv - easy to install , easy to trouble shoot , easy to add remove devices 
+            faliur of one cable affect only that device , good performace with switches 
+    disAdv - if center switch fail , everything goes down 
+
+
+3> Ring Topology
+    each device connected to two neighbouring devices 
+
+      PC1 ───── PC2
+       |          |
+       |          |
+      PC4 ───── PC3
+
+    adv - predictable data transmission, Less collison , equal acess for devices 
+    disAdv - faliur of a device can disrupt the newtork , adding / removing devices can 
+        be diufficult , trouble shotting can be harder 
+
+
+4> Mesh Topology (higest redundancy )
+    evry device is directly connected to every other device 
+
+       A
+      /|\
+     / | \
+    /  |  \
+   B---|---C
+    \  |  /
+     \ | /
+       D   
+
+    adv -> very reliable , high fault tolerence , if one fail then another path exist 
+        good security due to private links 
+    disAdv -> expensive , lot of cables , .complex installation , difficult to maintain 
+
+
+
+5> Tree Topology 
+    hierarchical topology 
+
+                 Root
+               /      \
+             SW1      SW2
+            /  \      /  \
+          PC1  PC2  PC3  PC4
+
+    adv -> easy to maintain , hierarchical management , suitable for large management 
+    disAdv -> root/backbone faliure can affect a large proportion , more complex , more 
+            cables required than simple star 
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------NETWORKING DEVICES ------------------------
+
+
+1> HUB (legacy device)
+    operates at physical layer / layer 1 
+    broadcast device / packet replicator 
+    half duplex 
+    no intelligence .. cannot read address 
+    all ports share one domain 
+
+
+2> SWITCH (intelligent device)
+    operates 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
