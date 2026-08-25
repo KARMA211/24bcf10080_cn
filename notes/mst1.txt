@@ -279,6 +279,130 @@ PC2 ─────── Switch ─────── PC3
 
 
 
+------------------Transmission Media-------------------------
+
+GUIDED MEDIA ( WIRED )
+
+1> Twisted Pair Cable :
+        most common type 
+        pair of copper wire twisted together 
+        UTP: unshielded , cheap 
+        STP: shielded , blocks interference
+        Use : Office Lans , Home internet 
+
+
+2> Coaxial Cable : 
+        heavy duty copper cable 
+        central copper core , plastic insulation , metal mesh shield 
+        Resistant to interferance 
+        Use : cable TV, broadband internet 
+
+3> Fibler Optic Cable :
+        Use light pulses instead of electricity 
+        immune to electrical interferance 
+        core : glass / plastic strand 
+        Cladding : Reflective Layer 
+        Principle : Total internal Reflection 
+        Use : UbderSea Cable 
+
+
+UNGUIDED MEDIA ( WIRELESS )
+
+1> Radio Waves :
+    frequency : 3KHz - 1GHz 
+    Direction : OmniDirectional 
+    passes through walls 
+    use: FM/AM , 2G/3G cellular 
+
+
+2> Microwave 
+    frequency: 1GHz - 300GHz 
+    Direction : unidirectional 
+    Use : Satellite Links , Wi-Fi , innner city towers
+
+
+3> Infrared 
+    frequency : 300GHZ - 400Thz 
+    Direction : Line of Sight 
+    Range : few meters 
+    canno pass through walls 
+    Use : TV remote 
+
+
+
+
+   
+
+
+
+-------------------MULTIPLEXING-------------------------
+
+Combining multiple signlas/ data streams into one single over shared medium 
+
+Components : 
+            MUX ( Multiplexer ) : combines signal 
+            DEMUX ( Demultiplier ) : seperates signals
+
+
+TYPES OF MULTIPLEXING---- 
+
+1> FDM ( Frequency Division Multiplexing )
+    Bandwidth divided into freq channels 
+    Guard Bands Prevent Interference 
+    eg -: Cable TV ( different Channels on different frequencies )
+
+2> TDM ( Time Division Multiplexing )
+    Time is Shared ( smae frequency but at diff times )
+
+    TWO TYPES:
+        Synchronous TDM : Fixed Time Slots ( may waste bandwidth )
+        Statistical TDM : Dynamic Allocation , no Empty slot , needs address tags 
+
+3> WDM ( Wavelength Division Multiplexing )
+    for fiber optic cable 
+    diff wavelength means diff signal 
+    Use : Telecommunication 
+
+
+
+
+
+
+
+
+
+
+---------------------MODULATION---------------------------
+
+converting Digital Signals into analog signals for transmission 
+
+why ?
+    computers use digital pulses 
+    digital signals degrade quickly over distance 
+
+MODEM (Modulator - Demodulator)->
+        Modulator : Data -> electrical / Digital signals
+        Demodulator : Extract data from transmitted Signals 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

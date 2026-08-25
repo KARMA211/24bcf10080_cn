@@ -56,6 +56,11 @@ ensure data transfer is error free
                    device has the right to transmit at a given time 
 
 
+    Sublayers ->    
+                1> LLC ( Logical Link Control) - software facing 
+                2> MAC ( medium access ctrl )- Hardware Facing ....(MAC address - 48 bit) 
+
+
 NETWORK LAYER -> 
 deliver data from source network to destination network 
 manage data transmission btw host across diff. networks by handling logical adressing and path finding 
