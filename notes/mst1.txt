@@ -401,6 +401,71 @@ MODEM (Modulator - Demodulator)->
 
 
 
+----------------------------DATA LINK LAYER AND MAC PROTOCOLS----------------------------------
+
+DATA LINK LAYER DESIGN ISSUES 
+
+1> Framing - convert continous bit stream into frames 
+        techniques - 
+                    character count ( character count indicate frame length )
+                    Byte Stuffing ( flag bytes with escape characters )
+                    bit stuffing ( 0 addred after 5 consecutive 1's )
+
+
+2> Error Detection Methods 
+
+
+Method	          Description	                   Error Type Detected
+Parity Check	  Single extra bit counts ones	   Single-bit errors only
+Checksum	      Binary addition of segments	   Multi-bit errors
+CRC	              Binary division by polynomial	   Burst errors
+
+
+-----Parity check------
+
+Even Parity : total 1s must be even 
+Odd Parity  : total 1s must be odd 
+
+Example (Even Parity):
+Data: 1011010 (four 1s = even)
+Parity bit: 0
+Code word: 10110100
+
+Limitation: Cannot detect even number of bit flips
+
+
+-------CheckSum---------
+
+Sender Side : 
+    Divide into equal segments 
+    add segments ( with carry wrap around )
+    Complete the sum -> checksum 
+    append to data 
+
+Reciver Side :
+    Add all segments including Checksum 
+    if result == all 1s : Accept 
+    if any 0 appers in result : reject 
+
+
+
+------CRC(Cyclic Redundance Check)-------------
+
+Process:
+    Both sender/receiver agree on Generator Polynomial
+    Sender appends (n-1) zeros to data
+    Perform modulo-2 division
+    Remainder = CRC (appended to data)
+    Receiver divides entire frame
+    If remainder = 0 → Accept
+
+
+
+Example:
+    Data: 100100
+    Divisor: 1101 (n=4)
+    CRC bits: 001
+    Final frame: 100100001
 
 
 
@@ -414,6 +479,143 @@ MODEM (Modulator - Demodulator)->
 
 
 
+
+-------------------------------------ERROR CORRECTION------------------------------------
+                                       Hamming Code 
+
+
+Not only detects but corrects errors
+Uses Forward Error Correction (FEC)
+Multiple redundant parity bits identify exact error position
+Use: Satellite links, deep-sea lines
+
+
+
+-------------------------------Flow Control------------------------------------------
+
+Stop-and-Wait: Send, wait for ACK, send next
+Sliding Window: Send batch of frames, wait for clearance
+
+
+--------------------------SWITCH WORKING--------------------------
+
+1. Learning Phase
+Reads Source MAC Address
+Updates CAM Table (MAC → Port)
+
+2. Forwarding/Filtering Phase
+Looks up Destination MAC
+If found → Forward only to that port (Filter others)
+
+3. Flooding Phase
+If destination MAC unknown
+Broadcast to all ports except source
+Learning occurs when device replies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------RANDOM ACCESS PROTOCOLS---------------------------------- 
+
+
+------ALOHA-------
+
+
+1> Pure Aloha
+    Transmit whenever data available
+    Wait for acknowledgment
+    If none, wait random backoff time and retransmit
+    Vulnerable Time: 2 × T
+    Throughput: G × e^(-2G)
+
+
+
+2> Slotted Aloha
+    Time divided into slots
+    Transmit only at slot boundaries
+    Higher efficiency than Pure Aloha
+    Throughput: G × e^(-G)
+
+
+
+
+-------CSMA(CARRIER SENSE MULTIPLE ACCESS)---------
+
+1> 1-Persistent CSMA
+    Sense channel first
+    If idle → transmit immediately (100% probability)
+    If busy → keep sensing until free
+
+2> Non-Persistent CSMA
+    If busy → wait random time, then sense again
+    Reduces collisions but increases waiting time
+
+3> P-Persistent CSMA
+    When free → transmit with probability P
+    Wait with probability (1-P)
+    Works in slotted channels
+    Example: Coin toss (P=0.5)
+
+
+
+
+
+-----------CSMA/CD(collision Detection)-------------
+
+for wired 
+
+Sense channel before transmitting
+While transmitting, continue monitoring
+If collision detected → Stop immediately
+Send Jam Signal to notify all stations
+Wait random backoff time
+Retransmit
+
+Use: Traditional Ethernet (Half-Duplex)
+
+
+
+
+
+
+--------CSMA/CA (Collison Avoidance )-----------------
+
+For wireless
+
+Initialize Attempt Counter (K = 0): Each device keeps track of retransmission attempts.
+Sense the Channel: The device listens to see if the channel is busy, If busy -> Wait until it becomes free.
+Interframe Space (IFS): After the channel is idle, the device waits for a short fixed time.
+Check Again: If still idle after IFS, continue; otherwise, repeat sensing.
+Random Backoff: Choose a random number R in a contention window to delay transmission.
+Transmit Data Frame.
+Wait for Acknowledgment (ACK): If ACK received -> Success & If ACK not received -> Assume collision, retry 
+Retry Limit: If attempts exceed maximum .... abort transmission.
 
 
 
