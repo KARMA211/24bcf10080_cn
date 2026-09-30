@@ -61,3 +61,4 @@ and then exit twice to go into normal mode and do show vlan brief to see the vla
 for config of trunk 
 -interface gigabitEthernet 0/1
 -switchport mode trunk 
+-exit

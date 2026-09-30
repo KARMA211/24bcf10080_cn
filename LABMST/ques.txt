@@ -1,0 +1,10 @@
+1> static routing uisng 4 router ,4 switch, 8 switches 
+    use ip from class A: starting from 10.0.0.0
+
+2> implemnet 3 vlans , named HR , ADMIN , FINANCE , and vlan trunking using one switch and 6 pcs 
+    fa0/1 nad fa0/2 to hr 
+    fa0/3 fa0/4 admin 
+    fa0/5 fa0/6  finance 
+
+
+assighn fa0/24 as trunk port 
