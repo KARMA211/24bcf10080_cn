@@ -26,15 +26,15 @@ The network layer delivers packets from the source host to the destination host,
 
 ### Connectionless (datagram) vs Connection-oriented (virtual circuit) subnets
 
-| Issue | Datagram Subnet | Virtual Circuit Subnet |
-|---|---|---|
-| Setup phase | None — packets sent anytime | Connection (VC) established first; all packets follow it |
-| Address carried | Full source + destination address in every packet | Short VC identifier in each packet |
-| State in routers | None — stateless | Each VC occupies a table entry |
-| Routing | Each packet routed independently (may take different paths) | All packets follow the same fixed route |
-| Failure handling | Reroute around failed router easily | VC breaks; connection must be re-established |
-| Congestion control | Difficult (no reserved resources) | Easier — resources can be reserved in advance |
-| Examples | IP (the Internet) | ATM, MPLS, X.25, frame relay |
+| Issue              | Datagram Subnet                                             | Virtual Circuit Subnet                                   |
+| ------------------ | ----------------------------------------------------------- | -------------------------------------------------------- |
+| Setup phase        | None — packets sent anytime                                 | Connection (VC) established first; all packets follow it |
+| Address carried    | Full source + destination address in every packet           | Short VC identifier in each packet                       |
+| State in routers   | None — stateless                                            | Each VC occupies a table entry                           |
+| Routing            | Each packet routed independently (may take different paths) | All packets follow the same fixed route                  |
+| Failure handling   | Reroute around failed router easily                         | VC breaks; connection must be re-established             |
+| Congestion control | Difficult (no reserved resources)                           | Easier — resources can be reserved in advance            |
+| Examples           | IP (the Internet)                                           | ATM, MPLS, X.25, frame relay                             |
 
 ## 2. IP Addressing — IPv4
 
@@ -48,13 +48,13 @@ An IPv4 address is **32 bits**, written as four decimal octets separated by dots
 
 ### 2.1 Classful Addressing (original scheme)
 
-| Class | Leading bits | 1st octet range | Default mask | Max hosts per network | Use |
-|---|---|---|---|---|---|
-| A | 0 | 1 – 126 | 255.0.0.0 (/8) | 16,777,214 | Very large networks |
-| B | 10 | 128 – 191 | 255.255.0.0 (/16) | 65,534 | Medium networks |
-| C | 110 | 192 – 223 | 255.255.255.0 (/24) | 254 | Small networks |
-| D | 1110 | 224 – 239 | — | — | Multicast groups |
-| E | 1111 | 240 – 255 | — | — | Experimental / reserved |
+| Class | Leading bits | 1st octet range | Default mask        | Max hosts per network | Use                     |
+| ----- | ------------ | --------------- | ------------------- | --------------------- | ----------------------- |
+| A     | 0            | 1 – 126         | 255.0.0.0 (/8)      | 16,777,214            | Very large networks     |
+| B     | 10           | 128 – 191       | 255.255.0.0 (/16)   | 65,534                | Medium networks         |
+| C     | 110          | 192 – 223       | 255.255.255.0 (/24) | 254                   | Small networks          |
+| D     | 1110         | 224 – 239       | —                   | —                     | Multicast groups        |
+| E     | 1111         | 240 – 255       | —                   | —                     | Experimental / reserved |
 
 - **Class A:** first octet = network, last 3 octets = host. Only 126 networks but huge host count — wasteful for small users.
 - **Class B:** first two octets = network, last two = host.
@@ -66,13 +66,13 @@ An IPv4 address is **32 bits**, written as four decimal octets separated by dots
 
 **Classful vs Classless (CIDR):**
 
-| Feature | Classful | Classless / CIDR |
-|---|---|---|
-| Network size | Fixed by class | Flexible — any prefix length |
-| Allowed prefixes | Only /8, /16, /24 | Any length, e.g. /17, /23, /26, /27 |
-| Address allocation | Very wasteful | Allocated exactly as needed |
-| Network size known from | The class alone | The prefix length — it must always be stated with the address |
-| Modern usage | Historical / legacy | Widely used today |
+| Feature                 | Classful            | Classless / CIDR                                              |
+| ----------------------- | ------------------- | ------------------------------------------------------------- |
+| Network size            | Fixed by class      | Flexible — any prefix length                                  |
+| Allowed prefixes        | Only /8, /16, /24   | Any length, e.g. /17, /23, /26, /27                           |
+| Address allocation      | Very wasteful       | Allocated exactly as needed                                   |
+| Network size known from | The class alone     | The prefix length — it must always be stated with the address |
+| Modern usage            | Historical / legacy | Widely used today                                             |
 
 **Classful practice questions:**
 
@@ -99,12 +99,12 @@ Classful addressing wasted addresses and made routing tables explode. CIDR remov
 
 Need 4 subnets: 2² = 4, so borrow 2 bits → prefix `/26`, mask `255.255.255.192`, block size 64, 62 usable hosts each.
 
-| Subnet | Network address | Host range | Broadcast address |
-|---|---|---|---|
-| 1 | 192.168.1.0 | 192.168.1.1 – 192.168.1.62 | 192.168.1.63 |
-| 2 | 192.168.1.64 | 192.168.1.65 – 192.168.1.126 | 192.168.1.127 |
-| 3 | 192.168.1.128 | 192.168.1.129 – 192.168.1.190 | 192.168.1.191 |
-| 4 | 192.168.1.192 | 192.168.1.193 – 192.168.1.254 | 192.168.1.255 |
+| Subnet | Network address | Host range                    | Broadcast address |
+| ------ | --------------- | ----------------------------- | ----------------- |
+| 1      | 192.168.1.0     | 192.168.1.1 – 192.168.1.62    | 192.168.1.63      |
+| 2      | 192.168.1.64    | 192.168.1.65 – 192.168.1.126  | 192.168.1.127     |
+| 3      | 192.168.1.128   | 192.168.1.129 – 192.168.1.190 | 192.168.1.191     |
+| 4      | 192.168.1.192   | 192.168.1.193 – 192.168.1.254 | 192.168.1.255     |
 
 **Worked Example 2: Subnetting for hosts**
 
@@ -112,11 +112,11 @@ Given `172.16.0.0/16`, a department needs 500 hosts per subnet. 2⁹ − 2 = 510
 
 **Quick subnetting reference**
 
-| Prefix | Mask | Usable hosts | Prefix | Mask | Usable hosts |
-|---|---|---|---|---|---|
-| /24 | 255.255.255.0 | 254 | /27 | 255.255.255.224 | 30 |
-| /25 | 255.255.255.128 | 126 | /28 | 255.255.255.240 | 14 |
-| /26 | 255.255.255.192 | 62 | /30 | 255.255.255.252 | 2 (links) |
+| Prefix | Mask            | Usable hosts | Prefix | Mask            | Usable hosts |
+| ------ | --------------- | ------------ | ------ | --------------- | ------------ |
+| /24    | 255.255.255.0   | 254          | /27    | 255.255.255.224 | 30           |
+| /25    | 255.255.255.128 | 126          | /28    | 255.255.255.240 | 14           |
+| /26    | 255.255.255.192 | 62           | /30    | 255.255.255.252 | 2 (links)    |
 
 **More subnetting practice (exam favourites):**
 
@@ -127,16 +127,16 @@ Given `172.16.0.0/16`, a department needs 500 hosts per subnet. 2⁹ − 2 = 510
 
 **`216.21.5.0` subnetted into 30-host subnets:** need 2^H − 2 ≥ 30 → H = 5 exactly → /27, mask 255.255.255.224, block 32, 8 subnets:
 
-| Subnet | Network | Usable range | Broadcast |
-|---|---|---|---|
-| 1 | 216.21.5.0 | .1 – .30 | .31 |
-| 2 | 216.21.5.32 | .33 – .62 | .63 |
-| 3 | 216.21.5.64 | .65 – .94 | .95 |
-| 4 | 216.21.5.96 | .97 – .126 | .127 |
-| 5 | 216.21.5.128 | .129 – .158 | .159 |
-| 6 | 216.21.5.160 | .161 – .190 | .191 |
-| 7 | 216.21.5.192 | .193 – .222 | .223 |
-| 8 | 216.21.5.224 | .225 – .254 | .255 |
+| Subnet | Network      | Usable range | Broadcast |
+| ------ | ------------ | ------------ | --------- |
+| 1      | 216.21.5.0   | .1 – .30     | .31       |
+| 2      | 216.21.5.32  | .33 – .62    | .63       |
+| 3      | 216.21.5.64  | .65 – .94    | .95       |
+| 4      | 216.21.5.96  | .97 – .126   | .127      |
+| 5      | 216.21.5.128 | .129 – .158  | .159      |
+| 6      | 216.21.5.160 | .161 – .190  | .191      |
+| 7      | 216.21.5.192 | .193 – .222  | .223      |
+| 8      | 216.21.5.224 | .225 – .254  | .255      |
 
 **`150.15.0.0` into 500-host subnets:** need 2^H − 2 ≥ 500 → H = 9 gives 510 → **/23**, mask 255.255.254.0, block size 2 in the third octet. Subnets: `150.15.0.0/23` (hosts 150.15.0.1 – 150.15.1.254, broadcast 150.15.1.255), `150.15.2.0/23`, `150.15.4.0/23`, … up to `150.15.254.0/23` (128 subnets).
 
@@ -159,22 +159,22 @@ Given `172.16.0.0/16`, a department needs 500 hosts per subnet. 2⁹ − 2 = 510
 
 The IPv4 header is **20 bytes minimum, up to 60 bytes** with options. Fields (in order):
 
-| Field | Size | Purpose |
-|---|---|---|
-| Version | 4 bits | IP version in use (4) |
-| IHL (Header Length) | 4 bits | Header length in 32-bit words: 5 to 15, i.e. 20 to 60 bytes |
-| DSCP + ECN | 8 bits | 6-bit DSCP: priority/QoS treatment; 2-bit ECN: congestion notification from routers |
-| Total Length | 16 bits | Header + data length in bytes (max 65,535) |
-| Identification | 16 bits | Same value in all fragments of one datagram (for reassembly) |
-| Flags | 3 bits | DF = Do not Fragment; MF = More Fragments follow |
-| Fragment Offset | 13 bits | Position of this fragment's data, in units of 8 bytes |
-| TTL (Time To Live) | 8 bits | Hop counter; decremented each router; packet discarded at 0 (prevents loops) |
-| Protocol | 8 bits | Upper-layer protocol: 6 = TCP, 17 = UDP, 1 = ICMP |
-| Header Checksum | 16 bits | Integrity check on the header only; recomputed at every hop (TTL changes) |
-| Source Address | 32 bits | Sender's IP address |
-| Destination Address | 32 bits | Receiver's IP address |
-| Options | 0 – 40 bytes | Rarely used: record route, timestamp, strict/loose source route |
-| Padding | 0 – 3 bytes | Fills the header up to a 32-bit boundary |
+| Field               | Size         | Purpose                                                                             |
+| ------------------- | ------------ | ----------------------------------------------------------------------------------- |
+| Version             | 4 bits       | IP version in use (4)                                                               |
+| IHL (Header Length) | 4 bits       | Header length in 32-bit words: 5 to 15, i.e. 20 to 60 bytes                         |
+| DSCP + ECN          | 8 bits       | 6-bit DSCP: priority/QoS treatment; 2-bit ECN: congestion notification from routers |
+| Total Length        | 16 bits      | Header + data length in bytes (max 65,535)                                          |
+| Identification      | 16 bits      | Same value in all fragments of one datagram (for reassembly)                        |
+| Flags               | 3 bits       | DF = Do not Fragment; MF = More Fragments follow                                    |
+| Fragment Offset     | 13 bits      | Position of this fragment's data, in units of 8 bytes                               |
+| TTL (Time To Live)  | 8 bits       | Hop counter; decremented each router; packet discarded at 0 (prevents loops)        |
+| Protocol            | 8 bits       | Upper-layer protocol: 6 = TCP, 17 = UDP, 1 = ICMP                                   |
+| Header Checksum     | 16 bits      | Integrity check on the header only; recomputed at every hop (TTL changes)           |
+| Source Address      | 32 bits      | Sender's IP address                                                                 |
+| Destination Address | 32 bits      | Receiver's IP address                                                               |
+| Options             | 0 – 40 bytes | Rarely used: record route, timestamp, strict/loose source route                     |
+| Padding             | 0 – 3 bytes  | Fills the header up to a 32-bit boundary                                            |
 
 - **IHL examples:** IHL = 5 → 5 × 4 = 20 bytes (no options); IHL = 7 → 28 bytes (8 bytes of options).
 
@@ -185,43 +185,44 @@ The IPv4 header is **20 bytes minimum, up to 60 bytes** with options. Fields (in
 
 ### IPv6 header (fixed 40 bytes, no options field)
 
-| Field | Size | Purpose |
-|---|---|---|
-| Version | 4 bits | 6 |
-| Traffic Class | 8 bits | QoS / priority (like DSCP) |
-| Flow Label | 20 bits | Marks packets of one flow for special handling |
-| Payload Length | 16 bits | Length of data after the 40-byte header |
-| Next Header | 8 bits | Type of the next header: an extension header or upper protocol (6 = TCP, 17 = UDP, 58 = ICMPv6) |
-| Hop Limit | 8 bits | Same job as IPv4 TTL |
-| Source Address | 128 bits | Sender |
-| Destination Address | 128 bits | Receiver |
+| Field               | Size     | Purpose                                                                                         |
+| ------------------- | -------- | ----------------------------------------------------------------------------------------------- |
+| Version             | 4 bits   | 6                                                                                               |
+| Traffic Class       | 8 bits   | QoS / priority (like DSCP)                                                                      |
+| Flow Label          | 20 bits  | Marks packets of one flow for special handling                                                  |
+| Payload Length      | 16 bits  | Length of data after the 40-byte header                                                         |
+| Next Header         | 8 bits   | Type of the next header: an extension header or upper protocol (6 = TCP, 17 = UDP, 58 = ICMPv6) |
+| Hop Limit           | 8 bits   | Same job as IPv4 TTL                                                                            |
+| Source Address      | 128 bits | Sender                                                                                          |
+| Destination Address | 128 bits | Receiver                                                                                        |
 
 ### IPv4 vs IPv6 — key differences
 
-| Feature | IPv4 | IPv6 |
-|---|---|---|
-| Address size | 32 bits | 128 bits (huge space; restores end-to-end addressing) |
-| Header | 20 – 60 bytes, 14 fields | Fixed 40 bytes, 8 fields — faster router processing |
-| Header checksum | Present; recomputed every hop | Removed (lower layers already check integrity) |
-| Fragmentation | Routers and source can fragment; reassembly at destination | Only the SOURCE fragments; routers never fragment (simpler routers) |
-| Options | Variable part of header | Extension headers placed between header and payload |
-| Broadcast | Supported | Not supported — replaced by multicast and anycast |
-| Configuration | Manual or DHCP | Autoconfiguration (SLAAC) + DHCPv6 |
-| Address types | Unicast, broadcast, multicast | Unicast (global, link-local FE80::/10), multicast (FF00::/8), anycast |
+| Feature         | IPv4                                                       | IPv6                                                                  |
+| --------------- | ---------------------------------------------------------- | --------------------------------------------------------------------- |
+| Address size    | 32 bits                                                    | 128 bits (huge space; restores end-to-end addressing)                 |
+| Header          | 20 – 60 bytes, 14 fields                                   | Fixed 40 bytes, 8 fields — faster router processing                   |
+| Header checksum | Present; recomputed every hop                              | Removed (lower layers already check integrity)                        |
+| Fragmentation   | Routers and source can fragment; reassembly at destination | Only the SOURCE fragments; routers never fragment (simpler routers)   |
+| Options         | Variable part of header                                    | Extension headers placed between header and payload                   |
+| Broadcast       | Supported                                                  | Not supported — replaced by multicast and anycast                     |
+| Configuration   | Manual or DHCP                                             | Autoconfiguration (SLAAC) + DHCPv6                                    |
+| Address types   | Unicast, broadcast, multicast                              | Unicast (global, link-local FE80::/10), multicast (FF00::/8), anycast |
 
 - **Anycast (new in IPv6):** one address assigned to several hosts; a packet to it is delivered to the NEAREST one — used for load balancing and finding the closest server.
 
 ## 6. Network Layer Protocols (working and purpose)
 
-| Protocol | Full name | Working / purpose |
-|---|---|---|
-| IP | Internet Protocol | Delivers datagrams between hosts; connectionless, best-effort, no guarantees |
-| ICMP | Internet Control Message Protocol | Error reporting and diagnostics between hosts/routers (destination unreachable, time exceeded); ping uses Echo Request / Echo Reply |
-| ARP | Address Resolution Protocol | Finds the MAC address of a host on the same LAN, given its IP (request broadcast, reply unicast) |
-| RARP | Reverse ARP | Finds the IP given the MAC — superseded by BOOTP and DHCP |
-| IGMP | Internet Group Management Protocol | Lets hosts join / leave multicast groups; routers use it to track group members on each interface |
-| DHCP | Dynamic Host Configuration Protocol | Automatically assigns IP address, mask, gateway and DNS to hosts at boot time (detailed in Chapter 2.2) |
-| NAT | Network Address Translation | Maps many private addresses to one (or few) public IP(s) at the router — conserves IPv4 addresses || ND | Neighbor Discovery (IPv6) | The IPv6 replacement for ARP: resolves IPv6 addresses to MAC addresses, plus router discovery and prefix information (uses ICMPv6) |
+| Protocol | Full name                           | Working / purpose                                                                                                                   |
+| -------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| IP       | Internet Protocol                   | Delivers datagrams between hosts; connectionless, best-effort, no guarantees                                                        |
+| ICMP     | Internet Control Message Protocol   | Error reporting and diagnostics between hosts/routers (destination unreachable, time exceeded); ping uses Echo Request / Echo Reply |
+| ARP      | Address Resolution Protocol         | Finds the MAC address of a host on the same LAN, given its IP (request broadcast, reply unicast)                                    |
+| RARP     | Reverse ARP                         | Finds the IP given the MAC — superseded by BOOTP and DHCP                                                                           |
+| IGMP     | Internet Group Management Protocol  | Lets hosts join / leave multicast groups; routers use it to track group members on each interface                                   |
+| DHCP     | Dynamic Host Configuration Protocol | Automatically assigns IP address, mask, gateway and DNS to hosts at boot time (detailed in Chapter 2.2)                             |
+| NAT      | Network Address Translation         | Maps many private addresses to one (or few) public IP(s) at the router — conserves IPv4 addresses                                   |
+| ND       | Neighbor Discovery (IPv6)           | The IPv6 replacement for ARP: resolves IPv6 addresses to MAC addresses, plus router discovery and prefix information (uses ICMPv6)  |
 
 ---
 
@@ -231,24 +232,24 @@ The IPv4 header is **20 bytes minimum, up to 60 bytes** with options. Fields (in
 
 ### Routing vs Forwarding
 
-| Routing | Forwarding |
-|---|---|
-| Finds/learns the path | Sends the actual packet |
+| Routing                                | Forwarding                             |
+| -------------------------------------- | -------------------------------------- |
+| Finds/learns the path                  | Sends the actual packet                |
 | Builds and maintains the routing table | Uses the table — one lookup per packet |
-| Concerned with path selection | Concerned with packet movement |
-| "Use R2 to reach network B" | "Send this packet to R2" |
+| Concerned with path selection          | Concerned with packet movement         |
+| "Use R2 to reach network B"            | "Send this packet to R2"               |
 
 ### Metric
 A value used by a routing protocol to compare routes and pick the preferred path. **Shortest path = path with the lowest metric**, not necessarily the shortest physical distance.
 
-| Metric | Meaning |
-|---|---|
-| Hop count | Number of routers/hops to the destination |
-| Cost | An assigned value for a link or path |
-| Bandwidth | Capacity/speed of the link |
-| Delay | Time required to send data over the link |
-| Reliability | How stable the link is |
-| Load | How busy the link currently is |
+| Metric      | Meaning                                   |
+| ----------- | ----------------------------------------- |
+| Hop count   | Number of routers/hops to the destination |
+| Cost        | An assigned value for a link or path      |
+| Bandwidth   | Capacity/speed of the link                |
+| Delay       | Time required to send data over the link  |
+| Reliability | How stable the link is                    |
+| Load        | How busy the link currently is            |
 
 ### How a router learns routes
 1. **Connected routes** — networks directly attached to the router's interfaces.
@@ -267,13 +268,13 @@ A value used by a routing protocol to compare routes and pick the preferred path
 
 Topology and link costs: A–B = 2, A–C = 1, B–C = 2, B–D = 1, C–D = 4, C–E = 3, D–E = 1. Find shortest paths from A.
 
-| Step | Permanent set N' | B | C | D | E |
-|---|---|---|---|---|---|
-| 0 | A | 2 (via A) | 1 (via A) | ∞ | ∞ |
-| 1 | A, C | 2 (via A) | — | 5 (via C) | 4 (via C) |
-| 2 | A, B, C | — | — | 3 (via B) | 4 (via C) |
-| 3 | A, B, C, D | — | — | — | 4 (tie: via C or via D) |
-| 4 | all | — | — | — | — |
+| Step | Permanent set N' | B         | C         | D         | E                       |
+| ---- | ---------------- | --------- | --------- | --------- | ----------------------- |
+| 0    | A                | 2 (via A) | 1 (via A) | ∞         | ∞                       |
+| 1    | A, C             | 2 (via A) | —         | 5 (via C) | 4 (via C)               |
+| 2    | A, B, C          | —         | —         | 3 (via B) | 4 (via C)               |
+| 3    | A, B, C, D       | —         | —         | —         | 4 (tie: via C or via D) |
+| 4    | all              | —         | —         | —         | —                       |
 
 Result: A→C = 1, A→B = 2, A→B→D = 3, A→C→E = 4 (or A→B→D→E = 4).
 **Relaxation rule used at every step:** `D(v) = min[ D(v), D(u) + c(u,v) ]` — if reaching v through the newly permanent node u is cheaper than v's current label, update it.
@@ -289,11 +290,11 @@ Result: A→C = 1, A→B = 2, A→B→D = 3, A→C→E = 4 (or A→B→D→E = 4
 
 **Worked example: line network A — B — C — D (each link cost 1)**
 
-| Router A learns (final) | Distance | Next hop | How it was learned |
-|---|---|---|---|
-| A to B | 1 | B | direct neighbour |
-| A to C | 2 | B | C is 1 from B (1 + 1) |
-| A to D | 3 | B | D is 2 from B (2 + 1) |
+| Router A learns (final) | Distance | Next hop | How it was learned    |
+| ----------------------- | -------- | -------- | --------------------- |
+| A to B                  | 1        | B        | direct neighbour      |
+| A to C                  | 2        | B        | C is 1 from B (1 + 1) |
+| A to D                  | 3        | B        | D is 2 from B (2 + 1) |
 
 **Main rule of DV:** cost to a destination through a neighbour = (cost to that neighbour) + (neighbour's advertised cost to the destination). Keep the minimum over all neighbours.
 
@@ -301,24 +302,24 @@ Result: A→C = 1, A→B = 2, A→B→D = 3, A→C→E = 4 (or A→B→D→E = 4
 
 **Advantages of Distance Vector:**
 
-| Advantage | Explanation |
-|---|---|
-| Simple concept | Easy to understand and implement |
-| Low memory and CPU | No complete topology map; simple calculations |
-| Automatic route learning | Dynamically learns and updates remote routes |
-| Neighbour-based exchange | Only talks to directly connected neighbours |
-| Suitable for small networks | Works well when network size is limited |
+| Advantage                   | Explanation                                   |
+| --------------------------- | --------------------------------------------- |
+| Simple concept              | Easy to understand and implement              |
+| Low memory and CPU          | No complete topology map; simple calculations |
+| Automatic route learning    | Dynamically learns and updates remote routes  |
+| Neighbour-based exchange    | Only talks to directly connected neighbours   |
+| Suitable for small networks | Works well when network size is limited       |
 
 **Disadvantages of Distance Vector:**
 
-| Disadvantage | Explanation |
-|---|---|
-| Slow convergence | Long time for information to stabilize after a change |
-| Count-to-infinity | Bad news (failures) propagates slowly; metric inflates to infinity (16 = infinity in RIP) |
-| Routing loops | More prone to loops during convergence |
-| Periodic update overhead | Exchanges full tables at fixed intervals even when nothing changed |
-| Limited scalability | Not suitable for very large networks |
-| No topology view | Router knows distances, not the actual map |
+| Disadvantage             | Explanation                                                                               |
+| ------------------------ | ----------------------------------------------------------------------------------------- |
+| Slow convergence         | Long time for information to stabilize after a change                                     |
+| Count-to-infinity        | Bad news (failures) propagates slowly; metric inflates to infinity (16 = infinity in RIP) |
+| Routing loops            | More prone to loops during convergence                                                    |
+| Periodic update overhead | Exchanges full tables at fixed intervals even when nothing changed                        |
+| Limited scalability      | Not suitable for very large networks                                                      |
+| No topology view         | Router knows distances, not the actual map                                                |
 
 **Count-to-infinity problem**
 
@@ -339,38 +340,38 @@ Result: A→C = 1, A→B = 2, A→B→D = 3, A→C→E = 4 (or A→B→D→E = 4
 
 **Advantages of Link State:**
 
-| Advantage | Explanation |
-|---|---|
-| Fast convergence | Topology changes are flooded immediately |
-| Complete topology knowledge | Every router holds the full map (LSDB) |
-| No count-to-infinity | Not affected by the classic DV problem |
-| Better scalability | Areas/hierarchy support very large networks (OSPF) |
-| Efficient path calculation | Dijkstra gives provably least-cost paths |
-| Robust | One router's bad information harms only itself |
+| Advantage                   | Explanation                                        |
+| --------------------------- | -------------------------------------------------- |
+| Fast convergence            | Topology changes are flooded immediately           |
+| Complete topology knowledge | Every router holds the full map (LSDB)             |
+| No count-to-infinity        | Not affected by the classic DV problem             |
+| Better scalability          | Areas/hierarchy support very large networks (OSPF) |
+| Efficient path calculation  | Dijkstra gives provably least-cost paths           |
+| Robust                      | One router's bad information harms only itself     |
 
 **Disadvantages of Link State:**
 
-| Disadvantage | Explanation |
-|---|---|
-| More complex | Harder to understand and configure |
-| Memory-hungry | Stores the entire link-state database |
-| CPU-intensive | Runs Dijkstra on every significant change |
-| Flooding overhead | LSAs consume bandwidth during distribution |
-| Heavy initial sync | Large topology exchange when routers boot |
-| Needs stronger routers | More resources required than DV |
+| Disadvantage           | Explanation                                |
+| ---------------------- | ------------------------------------------ |
+| More complex           | Harder to understand and configure         |
+| Memory-hungry          | Stores the entire link-state database      |
+| CPU-intensive          | Runs Dijkstra on every significant change  |
+| Flooding overhead      | LSAs consume bandwidth during distribution |
+| Heavy initial sync     | Large topology exchange when routers boot  |
+| Needs stronger routers | More resources required than DV            |
 
 **Distance Vector vs Link State**
 
-| Point | Distance Vector | Link State |
-|---|---|---|
-| Knowledge | Only distance to destinations, via neighbours' summaries | Full topology map of the whole network |
-| Information shared | Entire routing table with neighbours only | LSPs flooded to all routers |
-| Algorithm | Bellman-Ford (distributed) | Dijkstra (run locally on complete map) |
-| Update trigger | Periodic (every 30 s in RIP) plus triggered updates | On change only (faster convergence) |
-| Bandwidth use | Small messages but frequent | Heavy at start / on changes only |
-| Convergence | Slow; count-to-infinity problem | Fast; loops less likely |
-| Robustness | Bad information propagates | One router's error affects only itself |
-| Examples | RIP | OSPF, IS-IS |
+| Point              | Distance Vector                                          | Link State                             |
+| ------------------ | -------------------------------------------------------- | -------------------------------------- |
+| Knowledge          | Only distance to destinations, via neighbours' summaries | Full topology map of the whole network |
+| Information shared | Entire routing table with neighbours only                | LSPs flooded to all routers            |
+| Algorithm          | Bellman-Ford (distributed)                               | Dijkstra (run locally on complete map) |
+| Update trigger     | Periodic (every 30 s in RIP) plus triggered updates      | On change only (faster convergence)    |
+| Bandwidth use      | Small messages but frequent                              | Heavy at start / on changes only       |
+| Convergence        | Slow; count-to-infinity problem                          | Fast; loops less likely                |
+| Robustness         | Bad information propagates                               | One router's error affects only itself |
+| Examples           | RIP                                                      | OSPF, IS-IS                            |
 
 ## 4. Hierarchical Routing
 
@@ -381,13 +382,13 @@ Result: A→C = 1, A→B = 2, A→B→D = 3, A→C→E = 4 (or A→B→D→E = 4
 
 **Flat vs Hierarchical Routing:**
 
-| Feature | Flat | Hierarchical |
-|---|---|---|
-| Network organization | One broad structure | Divided into regions/areas |
-| Best for | Small networks | Large networks |
-| Routing information | Grows large | Summarized / reduced |
-| Scalability | Low | High |
-| Example | Single-area network | Multi-area OSPF, Internet AS hierarchy |
+| Feature              | Flat                | Hierarchical                           |
+| -------------------- | ------------------- | -------------------------------------- |
+| Network organization | One broad structure | Divided into regions/areas             |
+| Best for             | Small networks      | Large networks                         |
+| Routing information  | Grows large         | Summarized / reduced                   |
+| Scalability          | Low                 | High                                   |
+| Example              | Single-area network | Multi-area OSPF, Internet AS hierarchy |
 
 **Analogy:** a postal address works hierarchically — Country → State → City → Sector → House; your local post office does not need every house number in the country.
 
@@ -405,13 +406,13 @@ Delivering a packet from one source to **all** hosts. Four techniques:
 
 **Unicast vs Broadcast vs Multicast:**
 
-| Feature | Unicast | Broadcast | Multicast |
-|---|---|---|---|
-| Communication | One-to-one | One-to-all in scope | One-to-selected group |
-| Receiver | One specific host | Every host in the broadcast domain | Only group members |
-| Example | PC → web server | ARP request on a LAN | Video stream to a group |
-| IPv4 | Yes | Yes | Yes |
-| IPv6 | Yes | Not supported | Yes (replaces broadcast) |
+| Feature       | Unicast           | Broadcast                          | Multicast                |
+| ------------- | ----------------- | ---------------------------------- | ------------------------ |
+| Communication | One-to-one        | One-to-all in scope                | One-to-selected group    |
+| Receiver      | One specific host | Every host in the broadcast domain | Only group members       |
+| Example       | PC → web server   | ARP request on a LAN               | Video stream to a group  |
+| IPv4          | Yes               | Yes                                | Yes                      |
+| IPv6          | Yes               | Not supported                      | Yes (replaces broadcast) |
 
 **Advantages of broadcast:** simple one-to-all delivery, essential for discovery (ARP), robust (flooding finds a path even with failures).
 **Disadvantages:** high bandwidth consumption, duplicate packets, routing loops if uncontrolled, processing overhead on every host, poor scalability, security concerns.
@@ -423,13 +424,13 @@ Delivering a packet from one source to **all** hosts. Four techniques:
 
 **Information a unicast routing/forwarding table entry contains:**
 
-| Information | Meaning |
-|---|---|
-| Destination prefix | The network to be reached |
-| Prefix length / mask | Defines that network |
-| Next hop | The next router toward the destination |
-| Outgoing interface | The interface used to send the packet |
-| Metric / preference | Chooses among multiple possible routes |
+| Information          | Meaning                                |
+| -------------------- | -------------------------------------- |
+| Destination prefix   | The network to be reached              |
+| Prefix length / mask | Defines that network                   |
+| Next hop             | The next router toward the destination |
+| Outgoing interface   | The interface used to send the packet  |
+| Metric / preference  | Chooses among multiple possible routes |
 
 **Advantages:** precise one-to-one delivery, the common Internet model, flexible routing, scalable destination-based forwarding.
 **Disadvantages:** inefficient when the same data must reach many receivers — one separate copy per receiver is needed.
@@ -441,22 +442,22 @@ Delivering a packet from one source to **all** hosts. Four techniques:
 
 **DORA — the four-step exchange**
 
-| Step | Message | Who sends | What happens |
-|---|---|---|---|
-| 1 | DHCP Discover | Client → broadcast | "I need an IP" (to 255.255.255.255, since client has no address) |
-| 2 | DHCP Offer | Server → client | One (or more) servers offer an address + lease parameters |
-| 3 | DHCP Request | Client → broadcast | Client accepts one offer (broadcast so other servers withdraw theirs) |
-| 4 | DHCP Acknowledge | Server → client | Lease confirmed; client configures the address and starts the timer |
+| Step | Message          | Who sends          | What happens                                                          |
+| ---- | ---------------- | ------------------ | --------------------------------------------------------------------- |
+| 1    | DHCP Discover    | Client → broadcast | "I need an IP" (to 255.255.255.255, since client has no address)      |
+| 2    | DHCP Offer       | Server → client    | One (or more) servers offer an address + lease parameters             |
+| 3    | DHCP Request     | Client → broadcast | Client accepts one offer (broadcast so other servers withdraw theirs) |
+| 4    | DHCP Acknowledge | Server → client    | Lease confirmed; client configures the address and starts the timer   |
 
 - **Allocation methods:** automatic (permanent), dynamic (leased, returned when host leaves — reuses scarce addresses), manual (admin fixed).
 
 **DHCP terminology:**
 
-| Term | Meaning |
-|---|---|
-| DHCP pool | The set of configuration the server may hand out for a network (address range + mask + gateway + DNS) |
-| Excluded addresses | Addresses the admin reserves so DHCP never assigns them (e.g. servers, gateways) |
-| Lease | The time an address is granted for; the client must renew before expiry |
+| Term               | Meaning                                                                                               |
+| ------------------ | ----------------------------------------------------------------------------------------------------- |
+| DHCP pool          | The set of configuration the server may hand out for a network (address range + mask + gateway + DNS) |
+| Excluded addresses | Addresses the admin reserves so DHCP never assigns them (e.g. servers, gateways)                      |
+| Lease              | The time an address is granted for; the client must renew before expiry                               |
 
 **Advantages of DHCP:** automatic configuration, less manual work and fewer mistakes, no IP conflicts, centralized management, leases recycle scarce addresses, scales to large networks.
 **Disadvantages:** hosts depend on the DHCP service being up, rogue DHCP servers are a security risk, the address can change between leases, separate VLANs need proper DHCP relay design.
@@ -477,11 +478,11 @@ Delivering a packet from one source to **all** hosts. Four techniques:
 
 **Access Port vs Trunk Port:**
 
-| Access Port | Trunk Port |
-|---|---|
-| Carries traffic for **one** VLAN | Carries traffic for **many** VLANs |
+| Access Port                        | Trunk Port                             |
+| ---------------------------------- | -------------------------------------- |
+| Carries traffic for **one** VLAN   | Carries traffic for **many** VLANs     |
 | Connects end devices (PC, printer) | Connects switches (or switch ↔ router) |
-| Frames are untagged | Frames carry an 802.1Q VLAN tag |
+| Frames are untagged                | Frames carry an 802.1Q VLAN tag        |
 
 **Disadvantages of VLANs:** requires configuration and management; devices in different VLANs need a Layer-3 device (router / L3 switch) to communicate; a wrong VLAN assignment isolates the device; troubleshooting is more complex than in a single flat LAN.
 
@@ -504,13 +505,13 @@ Delivering a packet from one source to **all** hosts. Four techniques:
 
 **Open-loop policies in detail:**
 
-| Policy | Meaning | Example |
-|---|---|---|
-| Retransmission policy | Avoid unnecessary retransmissions, which add load | Do not resend a packet too quickly |
-| Window policy | Limit how many packets may be unacknowledged | Allow only 5 unacked packets |
-| Acknowledgement policy | Reduce acknowledgement traffic | Use cumulative ACKs for several packets |
-| Discarding policy | Drop packets early when necessary | Discard a low-priority packet during heavy load |
-| Admission policy | Refuse new traffic when resources are insufficient | Reject a new connection when overloaded |
+| Policy                 | Meaning                                            | Example                                         |
+| ---------------------- | -------------------------------------------------- | ----------------------------------------------- |
+| Retransmission policy  | Avoid unnecessary retransmissions, which add load  | Do not resend a packet too quickly              |
+| Window policy          | Limit how many packets may be unacknowledged       | Allow only 5 unacked packets                    |
+| Acknowledgement policy | Reduce acknowledgement traffic                     | Use cumulative ACKs for several packets         |
+| Discarding policy      | Drop packets early when necessary                  | Discard a low-priority packet during heavy load |
+| Admission policy       | Refuse new traffic when resources are insufficient | Reject a new connection when overloaded         |
 
 **Closed-loop (control):** monitor → detect → convey → adjust. Routers watch queue lengths / utilization; when a threshold is crossed they inform sources; sources then slow down (covered below and in TCP).
 
@@ -524,12 +525,12 @@ Delivering a packet from one source to **all** hosts. Four techniques:
 - Buffer = 1000 packets, queue empty, R_in = 1200 pkt/s, R_out = 1000 pkt/s → growth 200 pkt/s → T = 1000/200 = **5 seconds**.
 - Buffer = 2000, current queue = 500 (free space 1500), R_in = 1400, R_out = 900 → growth 500 pkt/s → T = 1500/500 = **3 seconds**.
 
-| Condition | What happens |
-|---|---|
-| R_in < R_out | Router keeps up; the queue shrinks |
-| R_in = R_out | No sustained queue growth |
-| R_in > R_out | Queue grows steadily |
-| Buffer full | **Buffer overflow** — arriving packets must be dropped (**tail drop**: the packet at the tail of the full queue is discarded) |
+| Condition    | What happens                                                                                                                  |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| R_in < R_out | Router keeps up; the queue shrinks                                                                                            |
+| R_in = R_out | No sustained queue growth                                                                                                     |
+| R_in > R_out | Queue grows steadily                                                                                                          |
+| Buffer full  | **Buffer overflow** — arriving packets must be dropped (**tail drop**: the packet at the tail of the full queue is discarded) |
 
 Effects of overflow: packet loss → retransmissions → even more traffic → higher delay → worse congestion.
 
@@ -547,11 +548,11 @@ Effects of overflow: packet loss → retransmissions → even more traffic → h
 
 **Traffic discarding vs Load shedding:**
 
-| Traffic Discarding / Buffer Overflow | Load Shedding |
-|---|---|
+| Traffic Discarding / Buffer Overflow                | Load Shedding                                                   |
+| --------------------------------------------------- | --------------------------------------------------------------- |
 | Packet dropped because no buffer space is available | Packets **deliberately** discarded to relieve severe congestion |
-| A consequence of a full queue | A congestion-control strategy |
-| Storage/resource limitation is the problem | Reducing load is the objective |
+| A consequence of a full queue                       | A congestion-control strategy                                   |
+| Storage/resource limitation is the problem          | Reducing load is the objective                                  |
 
 **Load shedding strategies:**
 1. **Random drop** — discard arriving packets with a fixed probability (e.g. 10%).
@@ -594,23 +595,23 @@ Bucket capacity *C* = 500 KB, tokens generated at ρ = 10 MB/s, maximum output r
 
 **Leaky Bucket vs Token Bucket**
 
-| Point | Leaky Bucket | Token Bucket |
-|---|---|---|
-| Bucket holds | Packets (queue) | Tokens |
-| Output rate | Strictly constant | Average = token rate; short bursts up to capacity allowed |
-| Idle sender | Gains nothing; input bursts are lost | Accumulates tokens (up to capacity) for later |
-| Network capacity | Wasted when idle | Used efficiently when idle |
-| Typical use | Hard rate limiting | Traffic shaping allowing controlled bursts |
+| Point            | Leaky Bucket                         | Token Bucket                                              |
+| ---------------- | ------------------------------------ | --------------------------------------------------------- |
+| Bucket holds     | Packets (queue)                      | Tokens                                                    |
+| Output rate      | Strictly constant                    | Average = token rate; short bursts up to capacity allowed |
+| Idle sender      | Gains nothing; input bursts are lost | Accumulates tokens (up to capacity) for later             |
+| Network capacity | Wasted when idle                     | Used efficiently when idle                                |
+| Typical use      | Hard rate limiting                   | Traffic shaping allowing controlled bursts                |
 
 **Why jitter occurs:**
 
-| Cause | What happens |
-|---|---|
-| Network congestion | Packets wait longer in queues |
-| Variable queuing delay | Queue lengths change over time |
-| Different routes | Packets may take paths with different delays |
-| Processing variation | Routers/hosts take different times to handle packets |
-| Traffic bursts | Sudden surges grow the queues unpredictably |
+| Cause                  | What happens                                         |
+| ---------------------- | ---------------------------------------------------- |
+| Network congestion     | Packets wait longer in queues                        |
+| Variable queuing delay | Queue lengths change over time                       |
+| Different routes       | Packets may take paths with different delays         |
+| Processing variation   | Routers/hosts take different times to handle packets |
+| Traffic bursts         | Sudden surges grow the queues unpredictably          |
 
 **Jitter buffer:** a small buffer at the receiver where packets wait before playback: irregular arrival → jitter buffer → regular playback. It adds a little fixed delay but greatly improves voice/video quality.
 
@@ -627,12 +628,12 @@ Bucket capacity *C* = 500 KB, tokens generated at ρ = 10 MB/s, maximum output r
 
 Max data per full fragment = 976 bytes (largest multiple of 8 that fits in 1000 − 20 = 980).
 
-| Fragment | Data | Header | Total | Offset (bytes/8) | MF |
-|---|---|---|---|---|---|
-| F1 | 976 | 20 | 996 | 0 | 1 |
-| F2 | 976 | 20 | 996 | 122 | 1 |
-| F3 | 976 | 20 | 996 | 244 | 1 |
-| F4 | 52 | 20 | 72 | 366 | 0 |
+| Fragment | Data | Header | Total | Offset (bytes/8) | MF  |
+| -------- | ---- | ------ | ----- | ---------------- | --- |
+| F1       | 976  | 20     | 996   | 0                | 1   |
+| F2       | 976  | 20     | 996   | 122              | 1   |
+| F3       | 976  | 20     | 996   | 244              | 1   |
+| F4       | 52   | 20     | 72    | 366              | 0   |
 
 Check: 976 × 3 + 52 = 2980. Every fragment must carry its own 20-byte header.
 
@@ -654,11 +655,11 @@ Check: 976 × 3 + 52 = 2980. Every fragment must carry its own 20-byte header.
 
 A 4000-byte IP datagram (20-byte header + 3980 bytes data) must cross a network with MTU 1500 bytes. Max data per fragment = 1480 (must be a multiple of 8).
 
-| Fragment | Total length | Data bytes | MF | Fragment offset (bytes / 8) |
-|---|---|---|---|---|
-| 1 | 1500 | 1480 | 1 | 0 (0 / 8) |
-| 2 | 1500 | 1480 | 1 | 185 (1480 / 8) |
-| 3 | 1040 | 1020 | 0 | 370 (2960 / 8) |
+| Fragment | Total length | Data bytes | MF  | Fragment offset (bytes / 8) |
+| -------- | ------------ | ---------- | --- | --------------------------- |
+| 1        | 1500         | 1480       | 1   | 0 (0 / 8)                   |
+| 2        | 1500         | 1480       | 1   | 185 (1480 / 8)              |
+| 3        | 1040         | 1020       | 0   | 370 (2960 / 8)              |
 
 - Check: 1480 + 1480 + 1020 = 3980 data bytes. Offsets are 0, 185, 370 (each offset = previous offset + previous data size / 8).
 - The destination uses Identification + MF + offset to reassemble in order; the timer discards fragments if some never arrive.
@@ -681,29 +682,29 @@ A 4000-byte IP datagram (20-byte header + 3980 bytes data) must cross a network 
 
 ## Key Formulas (quick reference)
 
-| Formula | Meaning |
-|---|---|
-| H = 32 − P | Host bits from prefix length |
-| 2^H / 2^H − 2 | Total addresses / usable hosts |
-| 2^n | Number of subnets (n = borrowed bits) |
-| New prefix = old prefix + borrowed bits | Subnetting prefix |
-| Block size = 256 − mask octet | Subnet increment |
-| Queue growth rate = R_in − R_out | Router queue growth |
-| T = (Capacity − Current queue) / (R_in − R_out) | Time to fill buffer |
-| T_b = B / (C − R) | Max burst duration — Leaky Bucket |
-| T_b = B / (C − r) | Max burst duration — Token Bucket |
-| D_x(y) = min_v { c(x,v) + D_v(y) } | Bellman-Ford (Distance Vector) |
-| D(v) = min[ D(v), D(u) + c(u,v) ] | Dijkstra relaxation step |
+| Formula                                         | Meaning                               |
+| ----------------------------------------------- | ------------------------------------- |
+| H = 32 − P                                      | Host bits from prefix length          |
+| 2^H / 2^H − 2                                   | Total addresses / usable hosts        |
+| 2^n                                             | Number of subnets (n = borrowed bits) |
+| New prefix = old prefix + borrowed bits         | Subnetting prefix                     |
+| Block size = 256 − mask octet                   | Subnet increment                      |
+| Queue growth rate = R_in − R_out                | Router queue growth                   |
+| T = (Capacity − Current queue) / (R_in − R_out) | Time to fill buffer                   |
+| T_b = B / (C − R)                               | Max burst duration — Leaky Bucket     |
+| T_b = B / (C − r)                               | Max burst duration — Token Bucket     |
+| D_x(y) = min_v { c(x,v) + D_v(y) }              | Bellman-Ford (Distance Vector)        |
+| D(v) = min[ D(v), D(u) + c(u,v) ]               | Dijkstra relaxation step              |
 
 ## Key Algorithms (quick reference)
 
-| Algorithm | Used in | Purpose |
-|---|---|---|
+| Algorithm    | Used in                 | Purpose                                           |
+| ------------ | ----------------------- | ------------------------------------------------- |
 | Bellman-Ford | Distance Vector routing | Shortest paths from neighbours' information (RIP) |
-| Dijkstra | Link State routing | Shortest paths from the topology map (OSPF) |
-| Leaky Bucket | Traffic shaping | Smooth bursts into a constant rate |
-| Token Bucket | Traffic shaping | Allow controlled bursts up to bucket capacity |
-| DORA | DHCP | Four-step IP address assignment |
+| Dijkstra     | Link State routing      | Shortest paths from the topology map (OSPF)       |
+| Leaky Bucket | Traffic shaping         | Smooth bursts into a constant rate                |
+| Token Bucket | Traffic shaping         | Allow controlled bursts up to bucket capacity     |
+| DORA         | DHCP                    | Four-step IP address assignment                   |
 
 ## Most likely exam questions from this unit
 
