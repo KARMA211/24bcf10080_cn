@@ -1,0 +1,4 @@
+
+implement router as dhcp server for serving multiple vlans 
+explain three way handshkaing for tcp 
+what is the dif btw tcp and udp header elaborate in detail 

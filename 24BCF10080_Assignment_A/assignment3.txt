@@ -1,0 +1,37 @@
+TCP Three-Way Handshake->
+
+
+A process to establish a reliable TCP connection and synchronize sequence numbers.
+
+SYN: Client sends SYN with initial sequence number x.
+SYN-ACK: Server replies with SYN + ACK, its own sequence number y, and ack = x+1.
+ACK: Client sends ACK with ack = y+1. Connection is established.
+Client                    Server
+  |--- SYN (seq=x) -------->|
+  |<-- SYN-ACK (seq=y,      |
+  |       ack=x+1) ---------|
+  |--- ACK (ack=y+1) ------>|
+
+Three steps are needed so both sides confirm they can send and receive.
+
+
+
+
+
+
+
+TCP vs UDP Header->
+
+
+Feature	TCP	UDP
+Header size	20-60 bytes	8 bytes (fixed)
+Fields	Source port, destination port, sequence number, acknowledgment number, data offset, flags, window size, checksum, urgent pointer, options	Source port, destination port, length, checksum
+Connection	Connection-oriented (uses SYN, FIN, RST flags)	Connectionless
+Reliability	Sequence and ACK numbers ensure ordered, reliable delivery	None
+Flow control	Yes (window size)	No
+Checksum	Mandatory	Optional in IPv4
+Options	Supported (MSS, SACK, window scaling)	None
+Speed/overhead	Slower, higher overhead	Faster, low overhead
+Uses	Web, email, file transfer	DNS, streaming, VoIP, gaming
+
+Summary: TCP’s header is larger because it carries information for reliability, ordering, and flow control, while UDP’s minimal header trades those features for speed.
